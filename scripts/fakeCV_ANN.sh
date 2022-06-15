@@ -7,7 +7,7 @@ set RDIR = /Users/yi/Documents/DTU/2022Spring/Algo_in_bioinfo/Project/22125_fina
 set DDIR = /Users/yi/Documents/DTU/2022Spring/Algo_in_bioinfo/Project/22125_final_project/data
 
 # Here you can type your allele names
-foreach a ( A0201 A0206 A3002 )
+foreach a ( A0201 A0206 A2403 A3002 B5701 )
 
 
 mkdir -p $a.results
