@@ -7,12 +7,12 @@ set RDIR = /Users/yi/Documents/DTU/2022Spring/Algo_in_bioinfo/Project/22125_fina
 set DDIR = /Users/yi/Documents/DTU/2022Spring/Algo_in_bioinfo/Project/22125_final_project/data
 
 # Here you can type your allele names
-foreach a ( A0201 A0206 A2403 A3002 B5701 )
+foreach a ( B3501 )
 
 
-mkdir -p $a.results
+mkdir -p $a.fake
 
-cd $a.results
+cd $a.fake
 
 # Here you can type the lambdas to test
 # foreach l ( 0 0.02 )
@@ -27,12 +27,12 @@ foreach n ( 0 1 2 3 4 )
 
 # Do training
 if ( ! -e out.$n ) then
-    python $RDIR/ANN_train.py -bl -nh 5 -syn syn.$n -t $DDIR/$a/f00$n -e $DDIR/$a/c00$n -stop | grep -v "#" > out.$n
+    python $RDIR/ANN_train.py -bl -nh 5 -syn syn.$n -t $DDIR/$a/fakeCV/f00$n -e $DDIR/$a/fakeCV/c00$n -stop | grep -v "#" > out.$n
 endif
 
 # Do evaluation
 if ( ! -e c00$n.pred ) then
-    python $RDIR/ANN_forward.py -bl -syn syn.$n -e $DDIR/$a/c00$n | grep -v "#" > c00$n.pred
+    python $RDIR/ANN_forward.py -bl -syn syn.$n -e $DDIR/$a/fakeCV/c00$n | grep -v "#" > c00$n.pred
 endif
 
 end
