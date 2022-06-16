@@ -37,9 +37,9 @@ endif
 
 end
 
-# Do concatinated evaluation
-echo $a `cat syn?.pred | grep -v "#" | gawk '{print $2,$3}' | ../xycorr` \
-`cat syn?.pred | grep -v "#" | gawk '{print $2,$3}' | gawk 'BEGIN{n+0; e=0.0}{n++; e += ($1-$2)*($1-$2)}END{print e/n}' `
+# # Do concatinated evaluation
+# echo $a `cat syn?.pred | grep -v "#" | gawk '{print $2,$3}' | ../xycorr` \
+# `cat syn?.pred | grep -v "#" | gawk '{print $2,$3}' | gawk 'BEGIN{n+0; e=0.0}{n++; e += ($1-$2)*($1-$2)}END{print e/n}' `
 
 cd ..
 
