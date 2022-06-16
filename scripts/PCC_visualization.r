@@ -2,18 +2,26 @@ library(tidyverse)
 library(ggplot2)
 library(stringi)
 binder_number <- c('29', '211', '513', '693', '1181')
-conventional <- c(0.726, 0.718, 0.818, 0.856, 0.872)
-true <- c(0.774, 0.705, 0.805, 0.842, 0.861)
-conventional_error <- c(0.012,
-                        0.003,
+conventional <- c(0.721,
+                  0.719,
+                  0.819,
+                  0.857,
+                  0.872)
+true <- c(0.739,
+          0.691,
+          0.793,
+          0.836,
+          0.855)
+conventional_error <- c(0.094,
+                        0.012,
                         0.01,
                         0.01,
-                        0.094)
-true_error <- c(0.005,
-                0.002,
-                0.002,
+                        0.003)
+true_error <- c(0.023,
+                0.005,
                 0.003,
-                0.023)
+                0.002,
+                0.002)
 
 errorbars <- paste(conventional_error,true_error,collapse = ' ')
 errorbars <- stri_split_boundaries(errorbars, simplify = TRUE) %>% 
@@ -46,7 +54,7 @@ PCC_plot <- plot_data %>%
                     ymax = PCC + errorbars),
                     width = 0.2,
                     position = position_dodge(0.9)) + 
-  labs(title = "PCC score as function of data set size",
+  labs(title = "ANN PCC score as function of binders in data set",
        fill = "Model type",
        x = "Number of binders")
   
