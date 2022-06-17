@@ -82,7 +82,7 @@ ANN_plot + SMM_plot
 
 ### Point plots for comparing performance of True
 # first calculate errorbars
-errorbars_combined <- paste(true_error_smm,true_error_ann,collapse = ' ')
+errorbars_combined <- paste(true_error_ann,true_error_smm,collapse = ' ')
 errorbars_combined <- stri_split_boundaries(errorbars_combined, simplify = TRUE) %>% 
   as.numeric(unlist(.))
 #and some formatting
