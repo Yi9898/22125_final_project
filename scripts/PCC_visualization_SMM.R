@@ -1,27 +1,29 @@
 library(tidyverse)
 library(ggplot2)
 library(stringi)
+
 binder_number <- c('29', '211', '513', '693', '1181')
-conventional <- c(0.721,
-                  0.719,
-                  0.819,
-                  0.857,
-                  0.872)
-true <- c(0.739,
-          0.691,
-          0.793,
-          0.836,
-          0.855)
-conventional_error <- c(0.094,
-                        0.012,
+conventional <- c(0.38,
+                  0.583,
+                  0.734,
+                  0.757,
+                  0.759)
+true <- c(0.433,
+          0.533,
+          0.703,
+          0.738,
+          0.734)
+
+conventional_error <- c(0.055,
+                        0.021,
+                        0.013,
                         0.01,
-                        0.01,
-                        0.003)
-true_error <- c(0.023,
-                0.005,
-                0.003,
-                0.002,
-                0.002)
+                        0.008)
+true_error <- c(0.039,
+                0.017,
+                0.007,
+                0.004,
+                0.005)
 
 errorbars <- paste(conventional_error,true_error,collapse = ' ')
 errorbars <- stri_split_boundaries(errorbars, simplify = TRUE) %>% 
@@ -52,12 +54,12 @@ PCC_plot <- plot_data %>%
   geom_col(position = "dodge") +
   geom_errorbar(aes(ymin = PCC - errorbars,
                     ymax = PCC + errorbars),
-                    width = 0.2,
-                    position = position_dodge(0.9)) + 
-  labs(title = "ANN PCC score as function of binders in data set",
+                width = 0.2,
+                position = position_dodge(0.9)) + 
+  labs(title = "SMM PCC score as function of data set size",
        fill = "Model type",
        x = "Number of binders")
-  
+
 
 PCC_plot +
   scale_x_discrete(limits = c('29', '211', '513', '693', '1181'))
