@@ -561,9 +561,9 @@ ANN_plot_seq <- plot_data_ann_seq %>%
        x = "Number of sequences") +
   ylim(0,1) +
   theme_grey(base_size = 16) +
-  theme(legend.position = "none",
+  theme(#legend.position = "none",
         axis.text.x = element_text(angle = -90, hjust = -0.2, vjust = 0.5)) + 
-  scale_fill_manual(values = c("coral2", "cyan2")) + 
+  scale_fill_manual(labels = c("Conventional", "True"), values = c("coral2", "cyan2")) + 
   scale_x_discrete(limits = seq_number_seq_sort)
 
 ### SMM
@@ -609,6 +609,8 @@ SMM_plot_seq <- plot_data_smm_seq %>%
   
 ### Bar plots 
 ANN_plot_seq + SMM_plot_seq
+ANN_plot_seq
+SMM_plot_seq
 
 ### BINDER SORTING ###
 ### ANN
@@ -645,9 +647,9 @@ ANN_plot_bind <- plot_data_ann_bind %>%
        x = "Number of binders") +
   ylim(0,1) +
   theme_grey(base_size = 16) +
-  theme(legend.position = "none",
+  theme(#legend.position = "none",
         axis.text.x = element_text(angle = -90, hjust = -0.2, vjust = 0.5)) + 
-  scale_fill_manual(values = c("coral2", "cyan2")) + 
+  scale_fill_manual(labels = c("Conventional", "True"), values = c("coral2", "cyan2")) + 
   scale_x_discrete(limits = binder_number_bind_sort)
 
 
@@ -692,7 +694,8 @@ SMM_plot_bind <- plot_data_smm_bind %>%
 
 ### Bar plots 
 ANN_plot_bind + SMM_plot_bind
-
+ANN_plot_bind
+SMM_plot_bind
 
 ### Scatterplot ###
 # data frame construction
@@ -763,7 +766,8 @@ pointplot_bind <- data.frame(
   geom_errorbar(aes(ymin = PCC - errorbars_combined,
                     ymax = PCC + errorbars_combined),
                 width = 20) +
-  scale_color_discrete(labels = c("ANN","SMM"))
+  scale_color_discrete(labels = c("ANN","SMM")) + 
+  theme_grey(base_size = 20)
 
 pointplot_bind
 
