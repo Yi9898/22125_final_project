@@ -7,7 +7,7 @@ set RDIR = /Users/yi/Documents/DTU/2022Spring/Algo_in_bioinfo/Project/22125_fina
 set DDIR = /Users/yi/Documents/DTU/2022Spring/Algo_in_bioinfo/Project/22125_final_project/data
 
 # Here you can type your allele names
-foreach a ( A0202 A0203 A0301 A6801 A3101 A6802 B0702 A3301 B1501 B5301 B5801 A0101 A2402 A6901 B5101 B5401 A3001 A2902 B2705 A2601 A2301 B4501 B1801 B4402 B4001 B4002 B4403 A3002 B0801 B5701 )
+foreach a ( A0201 A0206 A1101 A2403 B3501 A0202 A0203 A0301 A6801 A3101 A6802 B0702 A3301 B1501 B5301 B5801 A0101 A2402 A6901 B5101 B5401 A3001 A2902 B2705 A2601 A2301 B4501 B1801 B4402 B4001 B4002 B4403 A3002 B0801 B5701 )
 
 
 mkdir -p $a.true
@@ -27,12 +27,12 @@ foreach n ( 1 2 3 4 )
 
 # Do training
 if ( ! -e out.$n ) then
-    python $RDIR/ANN_train.py -bl -nh 5 -syn syn.$n -t $DDIR/$a/trueCV/f00$n -e $DDIR/$a/trueCV/c00$n -stop | grep -v "#" > out.$n
+    python $RDIR/ANN_train.py -nh 5 -syn syn.$n -t $DDIR/$a/trueCV/f00$n -e $DDIR/$a/trueCV/c00$n -stop | grep -v "#" > out.$n
 endif
 
 # Do evaluation
 if ( ! -e syn$n.pred ) then
-    python $RDIR/ANN_forward.py -bl -syn syn.$n -e $DDIR/$a/trueCV/c000 | grep -v "#" > syn$n.pred
+    python $RDIR/ANN_forward.py -syn syn.$n -e $DDIR/$a/trueCV/c000 | grep -v "#" > syn$n.pred
 endif
 
 end
