@@ -745,15 +745,17 @@ ggplot(scatter_data,
 errorbars_combined <- paste(true_error_ann_bind_sort,true_error_smm_bind_sort,collapse = ' ')
 errorbars_combined <- stri_split_boundaries(errorbars_combined, simplify = TRUE) %>% 
   as.numeric(unlist(.))
-# data og plot all in one
-pointplot_bind <- data.frame(
+# data
+pointplot_dat <- data.frame(
   binder_number_num_bind_sort,
   true_ann_bind_sort,
   true_smm_bind_sort) %>% 
   as_tibble() %>% 
   pivot_longer(!binder_number_num_bind_sort,
                names_to = "model_type",
-               values_to = "PCC") %>% 
+               values_to = "PCC")
+#plot 
+pointplot_bind <- pointplot_dat %>% 
   ggplot(.,
          mapping = aes(x = binder_number_num_bind_sort,
                        y = PCC,
@@ -771,3 +773,16 @@ pointplot_bind <- data.frame(
 
 pointplot_bind
 
+comp_plot <- data_ann_bind %>% 
+  ggplot(.,mapping=aes(x=binder_number_num_bind_sort,
+                       y=conventional_ann_bind_sort - true_ann_bind_sort)) + 
+  geom_point(alpha = 0.5, size = 4) + 
+  geom_hline(yintercept = 0) + 
+  geom_vline(xintercept = 80, linetype="dotted", size=1.5) + 
+  ylim(-0.15,0.15) + 
+  labs(title = "Difference in PCC of 'conventional' and 'true' cross validated ANN",
+       x = "Binder number",
+       y = "PCC of conventional - true") + 
+  theme_gray(base_size = 24)
+  
+comp_plot
