@@ -431,6 +431,10 @@ t.test(smm_f_nos, smm_t_nos, paired = TRUE)
 # Top half of set
 t.test(smm_f_nos[16:35], smm_t_nos[16:35], paired = TRUE)
 
+
+## SMM NoB vs ANN NoB
+# Whole set
+t.test(smm_t_nos, ann_t_nob, paired = TRUE)
   
 
 ################################################################################
